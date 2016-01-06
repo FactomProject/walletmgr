@@ -9,8 +9,16 @@ import (
 	"fmt"
 	"github.com/btcsuitereleases/btcutil/base58"
 	"github.com/FactomProject/factoid/wallet"
+	"github.com/FactomProject/FactomCode/util"
+	"github.com/FactomProject/factoid/state/stateinit"
 	"flag"
     "os"
+)
+
+var (
+	cfg             = util.ReadConfig().Wallet
+	databasefile    = "factoid_wallet_bolt.db"
+
 )
 
 func main() {
@@ -24,7 +32,7 @@ func main() {
 	switch args[0] {
 
 	case "exportseeds":
-		newWalletExport()
+		defaultWalletExport()
 	case "help":
 		man("help")
 	default:
@@ -35,17 +43,17 @@ func main() {
 }
 
 
+func defaultWalletExport() {
+    //initialize a factoidState from the default database location (~/.factom/)
+    var factoidState = stateinit.NewFactoidState(cfg.BoltDBPath + databasefile)
 
-
-
-func newWalletExport() {
     /* 
-        Create and initialize a new SCWallet instance, and call GetSeed() at least once on it, 
+        Load default SCWallet from factoidState, and call GetSeed() at least once on it, 
         to have a random RootSeed set up (for testing purposes)
     */
-    testWallet := new(wallet.SCWallet)
-    testWallet.Init()
-    testWallet.GetSeed()
+    defaultWallet := factoidState.GetWallet().(*wallet.SCWallet)
+    defaultWallet.Init()
+    defaultWallet.GetSeed()
 
     /*
         prefixing the 64 byte seeds with 0x13dd and then passing the result
@@ -63,8 +71,8 @@ func newWalletExport() {
         beginning of the byte-slice during the function operation. Therefore only the secondPrefixByte needs to
         be appended to the RootSeed bytes to craft the function's first parameter
     */
-    base58EncodedResult := base58.CheckEncode(append(secondPrefixByte, testWallet.RootSeed...), firstPrefixByte)
-    fmt.Printf("base58EncodedResult: %+v\n", base58EncodedResult)
+    base58EncodedResult := base58.CheckEncode(append(secondPrefixByte, defaultWallet.RootSeed...), firstPrefixByte)
+    fmt.Printf("\nSeed: %+v\n", base58EncodedResult)
 
 }
 
