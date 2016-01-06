@@ -1,4 +1,6 @@
-// Copyright 2015 Factom Foundation
+// Copyright 2016 Factom Foundation
+// Use of this source code is governed by the MIT
+// license that can be found in the LICENSE file.
 
 // Minimal seed export functionality
 package main
@@ -7,9 +9,34 @@ import (
 	"fmt"
 	"github.com/btcsuitereleases/btcutil/base58"
 	"github.com/FactomProject/factoid/wallet"
+	"flag"
+    "os"
 )
 
 func main() {
+    flag.Parse()
+	args := flag.Args()
+
+	if len(args) == 0 {
+		args = append(args, "help")
+	}
+
+	switch args[0] {
+
+	case "exportseeds":
+		newWalletExport()
+	default:
+		fmt.Println("Command not found")
+		man("default")
+	}
+
+}
+
+
+
+
+
+func newWalletExport() {
     /* 
         Create and initialize a new SCWallet instance, and call GetSeed() at least once on it, 
         to have a random RootSeed set up (for testing purposes)
@@ -37,4 +64,8 @@ func main() {
     base58EncodedResult := base58.CheckEncode(append(secondPrefixByte, testWallet.RootSeed...), firstPrefixByte)
     fmt.Printf("base58EncodedResult: %+v\n", base58EncodedResult)
 
+}
+
+func errorln(a ...interface{}) (n int, err error) {
+	return fmt.Fprintln(os.Stderr, a...)
 }
