@@ -25,6 +25,8 @@ func main() {
 
 	case "exportseeds":
 		newWalletExport()
+	case "help":
+		man("help")
 	default:
 		fmt.Println("Command not found")
 		man("default")

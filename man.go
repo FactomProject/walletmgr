@@ -8,6 +8,7 @@ const usage = `
 walletmgr [subcommand]   
         
     exportseeds             Export seeds for deterministic wallet re-creation
+    help                    Print this help message
 `
 
 // man returns an usage error string for the specified sub command.
