@@ -31,7 +31,7 @@ func main() {
 
 	switch args[0] {
 
-	case "exportseeds":
+	case "exportseed":
 		defaultWalletExport()
 	case "help":
 		man("help")
