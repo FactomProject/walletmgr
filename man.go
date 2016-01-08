@@ -7,14 +7,14 @@ package main
 const usage = `
 walletmgr [subcommand]   
         
-    exportseeds             Export seeds for deterministic wallet re-creation
+    exportseed              Export seed for future deterministic wallet re-creation
     help                    Print this help message
 `
 
 // man returns an usage error string for the specified sub command.
 func man(s string) {
 	m := map[string]string{
-		"exportseeds":    "walletmgr exportseeds",
+		"exportseed":    "walletmgr exportseed",
 		"help":           usage,
 		"default":        "More Help can be found by typing:\n\n  walletmgr help",
 	}
