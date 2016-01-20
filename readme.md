@@ -1,7 +1,7 @@
 Factom Wallet Manager
 ==========
 
-This program exports the root seed of the current factom wallet is a portable format.  It can printed to paper and backed up securely.
+This program exports the root seed of the current factom wallet in a portable format.  It can printed to paper and backed up securely.
 
 Note, the seed was not intended to be a deterministic wallet, but can be used as such.
 
