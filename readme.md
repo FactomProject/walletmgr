@@ -37,7 +37,7 @@ The sdxxx... value is a base58 encoded seed with a checksum.  Record this value,
 
 ## Restore the backup
 
-Currently there is no easy way to restore the key, but it can be done with enough effort.
+Currently there is no easy way to restore the key, but it can be done with enough effort.  It is a lot easier to make a digital backup, but paper backups have their benefits.
 
 
 ### Decode the seed
@@ -84,7 +84,7 @@ go get -v -u github.com/FactomProject/walletapp
 
 Open the file ~/go/src/github.com/FactomProject/factoid/wallet/scwallet.go
 
-Substitute the line where seedhash is created with a random number with the one decoded above.
+Add a line forcing the seedhash to the one decoded above.
 
 https://github.com/FactomProject/factoid/blob/666a00af6f151830cb8be97abf566239d4a11425/wallet/scwallet.go#L305
 
@@ -106,7 +106,7 @@ func (w *SCWallet) NewSeed(data []byte) {
 ...
 ```
 
-also add this line `"encoding/hex"` to the import list at the top.
+also add this line `"encoding/hex"` to the import list at the top of the scwallet.go file.
 
 
 Now compile the updated wallet which always creates new addresses with the seed.
@@ -117,7 +117,7 @@ Now compile the updated wallet which always creates new addresses with the seed.
 Rename the existing wallet if `~/.factom/factoid_wallet_bolt.db` exists.  This will cause the wallet to make a new one when new addresses are made.
 
 ```
-$ factom-cli newaddress fct a
+$ factom-cli newaddress fct recovered001
 fct  =  FA3LRaa3oqC8F3wvecqo1D7WPPhG7opttoM67yCsQQLy1LkzYXUa
 ```
 
@@ -125,4 +125,4 @@ Keep making new addresses with new names, and it should create addresses you had
 
 
 
-note: editing the same scwallet.go and creating new addresses will restore them when using walletapp as well.
+note: editing the same scwallet.go and creating new addresses will restore the same way when using walletapp as well.
