@@ -24,7 +24,7 @@ Either fctwallet or walletapp must have been run and at least 1 address must hav
 
 
 ```
-brian@hawkins:~/go$ walletmgr exportseed
+$ walletmgr exportseed
 2016/01/19 17:46:56 read factom config file:  /home/brian/.factom/factomd.conf
 
 Seed: sdrU9wonUEx47Ee1EjeXgeGtr8vrkEbd4GuQ1tfgRxp3woy2nBJQS9eqoa2WdAeiB3ga2DBEzr558GnSe4qpNBSZF6BNX5C
