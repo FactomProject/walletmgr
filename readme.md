@@ -44,7 +44,13 @@ Currently there is no easy way to restore the key, but it can be done with enoug
 
 The seed is recorded in bitcoin base58check format, so it is effectively impossible for a typo to go undetected.
 
-Currently, only a simple python script is needed to decode the address.
+Currently, only a simple python script is needed to decode the address.  the base58 library is a prerequisite.
+
+- Make sure pip is installed for your OS.  [Here](http://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/) are some directions for Ubuntu.
+
+- Install the base58 library with pip.  On ubuntu run `sudo pip install base58`.
+
+- Next run the decoding script:
 
 ```
 import base58
