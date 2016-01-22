@@ -50,7 +50,7 @@ Currently, only a simple python script is needed to decode the address.  the bas
 
 - Install the base58 library with pip.  On ubuntu run `sudo pip install base58`.
 
-- Next run the decoding script:
+- Next run the decoding script.  replace the example `seedToCheck` with your own.
 
 ```
 import base58
